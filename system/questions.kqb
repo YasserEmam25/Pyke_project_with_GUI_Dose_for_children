@@ -1,0 +1,60 @@
+# questions.kqb
+
+medicament_name($ans)
+	Choose the name of the medicament ?
+	---
+	$ans = select_1
+		1: Amikin
+		2: Ceftazidime
+		3: Gentamicin
+		4: Imipenem and cilastatin
+		5: Meropenem
+		6: Vancomycin
+		7: Fluconazole
+		8: Acyclovir
+		9: Linezolid
+		10: Clindamycin
+		11: Colistimethate sodium
+		12: Piperacillin
+		13: Ampicillin
+		14: Metronidazole
+		15: Ciprofloxacin
+
+postnatal_age($ans)
+	Choose the postnatal age in days:
+	---
+	$ans = select_1
+		1: between 1:7 days
+		2: between 8:28 days
+
+uterine_age($ans)
+	Enter the uterine age:
+	---
+	$ans = float
+
+baby_weight($ans)
+	Enter the baby weight:
+	---
+	$ans = float
+
+has_Meningitis($ans)
+	Does the baby have Meningitis ?
+	---
+	$ans = yn
+
+has_Thrush($ans)
+	Does the baby have Thrush ?
+	---
+	$ans = yn
+
+dose_allowed_according_to_postnatal_age($days)
+    Enter the dose allowed according to postnatal age in days:
+    ---
+    $days = float
+
+uterine_age_according_to_Preterm_or_Term($ans)
+	Choose the uterine age according to Preterm or Term:
+	---
+	$ans = select_1
+		1: Preterm (uterine age < 37 weeks)
+		2: Term (uterine age > 37 weeks)

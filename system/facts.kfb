@@ -1,0 +1,22 @@
+#facts.kfb
+Amikin_final_concentration(5,'Glucose salt solution, 5% glucose 10%','Slow injection over 3-5 minutes or over 30 minutes')
+Amikin_noMeningitis('1 cm extends to 50 cm')
+Amikin_Meningitis('1 cm is completed by 10 cm')
+
+Ceftazidime_final_concentration(100,'distilled water','Slow injection over 3-5 minutes')
+Ceftazidime_noMeningitis('dissolved in 5 cm')
+Ceftazidime_Meningitis('dissolved in 10 cm')
+
+Gentamicin_final_concentration(10,'It takes 2 cm + 6 cm', 'Salt solution, glucose, 5% glucose 10%','30 minutes')
+Imipenem_and_cilastatin_final_concentration(5,'Analyze the vial in 10 cm, take 1 cm and add to 10 cm','Salt solution, glucose, 5% glucose 10%','20-30 minutes')
+Meropenem_final_concentration(5,'The vial is dissolved in 10 cm of distilled water, taking 1 cm and adding to 10 cm','Salt solution, glucose 5%, glucose 10%','30 minutes')
+Vancomycin_final_concentration(5,'The vial is dissolved in 10 cm of distilled water, taking 1 cm and adding to 10 cm','Salt solution, glucose 5%, glucose 10%','60 minutes')
+Fluconazole_final_concentration(2,'It can be diluted again','Salt solution, 5% glucose','60 minutes')
+Acyclovir_final_concentration(5,'Dissolved in 5 cm distilled water, then take 1 cm and add to 10 cm','Salt solution , 5% glucose','60 minutes')
+Linezolid_final_concentration(2,'It can be diluted again','Salt solution , 5% glucose','30 minutes')
+Clindamycin_final_concentration(5,'Half a cm is completed to 15 cm','Salt solution , glucose 5%  , glucose 10%','10-60 minutes')
+ColistimethateSodium_final_concentration(17,'The vial is dissolved in 2 cm of distilled water','Salt solution, 5% glucose','Slowly over (3-5) minutes or complete the dose in the first 5 cm and take over 1/2 hour')
+Piperacillin_final_concentration(70,'The vial is dissolved in 20 cm of distilled water, taken from 4 cm and added to 10 cm','Salt solution, 5% glucose','30 minutes')
+Ampicillin_final_concentration(25,'Dip the flask in 5 cm distilled water and take the whole vial and dilute it again to 40 cm','Salt solution, glucose 5% ' ,'Slow injection over 3-5 minutes or over 15-30 minutes')
+Metronidazole_final_concentration(5,'It can be diluted again','Salt solution, glucose 5%','30 minutes')
+Ciprofloxacin_final_concentration(2,'2 cm completed to 10 cm' ,'Salt solution, glucose 5% glucose 10%','60 minutes')

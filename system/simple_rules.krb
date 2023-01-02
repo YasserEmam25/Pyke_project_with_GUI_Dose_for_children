@@ -1,0 +1,852 @@
+# simple_rules.krb
+
+Amikin_concentration
+    use concentration_ready($fact,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (1,)
+        facts.Amikin_final_concentration($fact,$type,$method)
+
+Ceftazidime_concentration
+    use concentration_ready($fact,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (2,)
+        facts.Ceftazidime_final_concentration($fact,$type,$method)
+
+Gentamicin_concentration
+    use concentration_ready($fact,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (3,)
+        facts.Gentamicin_final_concentration($fact,$analysis,$type,$method)
+
+Imipenem_and_cilastatin_concentration
+    use concentration_ready($fact,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (4,)
+        facts.Imipenem_and_cilastatin_final_concentration($fact,$analysis,$type,$method)
+
+Meropenem_concentration
+    use concentration_ready($fact,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (5,)
+        facts.Meropenem_final_concentration($fact,$analysis,$type,$method)
+
+Vancomycin_concentration
+    use concentration_ready($fact,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (6,)
+        facts.Vancomycin_final_concentration($fact,$analysis,$type,$method)
+
+Fluconazole_concentration
+    use concentration_ready($fact,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (7,)
+        facts.Fluconazole_final_concentration($fact,$analysis,$type,$method)
+
+Acyclovir_concentration
+    use concentration_ready($fact,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (8,)
+        facts.Acyclovir_final_concentration($fact,$analysis,$type,$method)
+
+Linezolid_concentration
+    use concentration_ready($fact,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (9,)
+        facts.Linezolid_final_concentration($fact,$analysis,$type,$method)
+
+Clindamycin_concentration
+    use concentration_ready($fact,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (10,)
+        facts.Clindamycin_final_concentration($fact,$analysis,$type,$method)
+
+ColistimethateSodium_concentration
+    use concentration_ready($fact,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (11,)
+        facts.ColistimethateSodium_final_concentration($fact,$analysis,$type,$method)
+
+Piperacillin_concentration
+    use concentration_ready($fact,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (12,)
+        facts.Piperacillin_final_concentration($fact,$analysis,$type,$method)
+
+Ampicillin_concentration
+    use concentration_ready($fact,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (13,)
+        facts.Ampicillin_final_concentration($fact,$analysis,$type,$method)
+
+Metronidazole_concentration
+    use concentration_ready($fact,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (14,)
+        facts.Metronidazole_final_concentration($fact,$analysis,$type,$method)
+
+Ciprofloxacin_concentration
+    use concentration_ready($fact,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (15,)
+        facts.Ciprofloxacin_final_concentration($fact,$analysis,$type,$method)
+
+age_in_days_1
+    use between1to7(True)
+    when
+        questions.postnatal_age($ans)
+        check $ans in (1,)
+
+age_in_days_2
+    use between8to28(True)
+    when
+        questions.postnatal_age($ans)
+        check $ans in (2,)
+
+Amikin_1to7_output_1_noMeningitis
+    use output(15,$weight,$con,48,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (1,)
+        concentration_ready($con,$type,$method)
+        facts.Amikin_noMeningitis($analysis)
+        between1to7(True)
+        questions.has_Meningitis(False)
+        questions.uterine_age($age)
+        check $age >= 1
+        check $age < 30
+        questions.baby_weight($weight)
+
+Amikin_1to7_output_2_noMeningitis
+    use output(15,$weight,$con,36,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (1,)
+        concentration_ready($con,$type,$method)
+        facts.Amikin_noMeningitis($analysis)
+        between1to7(True)
+        questions.has_Meningitis(False)
+        questions.uterine_age($age)
+        check $age >= 30
+        check $age <= 36
+        questions.dose_allowed_according_to_postnatal_age($days)
+        check $days < 10
+        questions.baby_weight($weight)
+
+Amikin_1to7_output_3_noMeningitis
+    use output(15,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (1,)
+        concentration_ready($con,$type,$method)
+        facts.Amikin_noMeningitis($analysis)
+        between1to7(True)
+        questions.has_Meningitis(False)
+        questions.uterine_age($age)
+        check $age > 35
+        questions.dose_allowed_according_to_postnatal_age($days)
+        check $days >= 10
+        questions.baby_weight($weight)
+
+Amikin_8to28_output_1_noMeningitis
+    use output(15,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (1,)
+        concentration_ready($con,$type,$method)
+        facts.Amikin_noMeningitis($analysis)
+        between8to28(True)
+        questions.has_Meningitis(False)
+        questions.uterine_age($age)
+        check $age >= 1
+        check $age < 30
+        questions.baby_weight($weight)
+
+
+Amikin_8to28_output_2_noMeningitis
+    use output(18.5,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (1,)
+        concentration_ready($con,$type,$method)
+        facts.Amikin_noMeningitis($analysis)
+        between8to28(True)
+        questions.has_Meningitis(False)
+        questions.uterine_age($age)
+        check $age >= 30
+        check $age <= 35
+        questions.baby_weight($weight)
+
+
+Amikin_8to28_output_3_noMeningitis
+    use output(17,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (1,)
+        concentration_ready($con,$type,$method)
+        facts.Amikin_noMeningitis($analysis)
+        between8to28(True)
+        questions.has_Meningitis(False)
+        questions.uterine_age($age)
+        check $age > 35
+        questions.baby_weight($weight)
+
+Amikin_1to7_output_Meningitis
+    use output(7.5,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (1,)
+        concentration_ready($con,$type,$method)
+        facts.Amikin_Meningitis($analysis)
+        between1to7(True)
+        questions.has_Meningitis(True)
+        questions.baby_weight($weight)
+
+Amikin_8to28_output_Meningitis
+    use output(10,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (1,)
+        concentration_ready($con,$type,$method)
+        facts.Amikin_Meningitis($analysis)
+        between8to28(True)
+        questions.has_Meningitis(True)
+        questions.baby_weight($weight)
+
+Ceftazidime_1to7_output_Meningitis
+    use output(100,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (2,)
+        concentration_ready($con,$type,$method)
+        facts.Amikin_Meningitis($analysis)
+        between1to7(True)
+        questions.has_Meningitis(True)
+        questions.baby_weight($weight)
+
+Ceftazidime_8to28_output_Meningitis
+    use output(150,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (2,)
+        concentration_ready($con,$type,$method)
+        facts.Amikin_Meningitis($analysis)
+        between8to28(True)
+        questions.has_Meningitis(True)
+        questions.baby_weight($weight)
+
+Ceftazidime_1to7_output_noMeningitis
+    use output(50,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (2,)
+        concentration_ready($con,$type,$method)
+        facts.Amikin_Meningitis($analysis)
+        between1to7(True)
+        questions.has_Meningitis(False)
+        questions.baby_weight($weight)
+
+Ceftazidime_8to28_output_noMeningitis
+    use output(50,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (2,)
+        concentration_ready($con,$type,$method)
+        facts.Amikin_Meningitis($analysis)
+        between8to28(True)
+        questions.has_Meningitis(False)
+        questions.baby_weight($weight)
+
+Gentamicin_1to7_output_1
+    use output(5,$weight,$con,48,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (3,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.uterine_age($age)
+        check $age >= 1
+        check $age <= 29
+        questions.baby_weight($weight)
+
+Gentamicin_1to7_output_2
+    use output(4.5,$weight,$con,36,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (3,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.uterine_age($age)
+        check $age >= 30
+        check $age <= 34
+        questions.baby_weight($weight)
+
+Gentamicin_1to7_output_3
+    use output(4,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (3,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.uterine_age($age)
+        check $age >= 35
+        questions.baby_weight($weight)
+
+Gentamicin_8to28_output_1
+    use output(4,$weight,$con,36,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (3,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.uterine_age($age)
+        check $age >= 1
+        check $age <= 29
+        questions.baby_weight($weight)
+
+Gentamicin_8to28_output_2
+    use output(4,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (3,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.uterine_age($age)
+        check $age > 29
+        questions.baby_weight($weight)
+
+Imipenem_and_cilastatin_1to7_output_1
+    use output(20,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (4,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.baby_weight($weight)
+        check $weight > 0
+        check $weight < 1.5
+
+Imipenem_and_cilastatin_1to7_output_2
+    use output(25,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (4,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.baby_weight($weight)
+        check $weight >= 1.5
+
+Imipenem_and_cilastatin_8to28_output_1
+    use output(25,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (4,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.baby_weight($weight)
+        check $weight > 0
+        check $weight < 1.5
+
+Imipenem_and_cilastatin_8to28_output_2
+    use output(25,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (4,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.baby_weight($weight)
+        check $weight >= 1.5
+
+Meropenem_1to7_output_1_noMeningitis
+    use output(20,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (5,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.has_Meningitis(False)
+        questions.baby_weight($weight)
+        check $weight > 0
+        check $weight <= 2
+
+Meropenem_1to7_output_2_noMeningitis
+    use output(20,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (5,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.has_Meningitis(False)
+        questions.baby_weight($weight)
+        check $weight > 2
+
+Meropenem_8to28_output_1_noMeningitis
+    use output(20,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (5,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.has_Meningitis(False)
+        questions.baby_weight($weight)
+        check $weight > 0
+        check $weight <=2
+        questions.dose_allowed_according_to_postnatal_age($days)
+        check $days > 14
+        check $days < 29
+
+Meropenem_8to28_output_2_noMeningitis
+    use output(30,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (5,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.has_Meningitis(False)
+        questions.baby_weight($weight)
+        check $weight > 0
+        check $weight <= 2
+        questions.dose_allowed_according_to_postnatal_age($days)
+        check $days >= 29
+
+
+Meropenem_8to28_output_3_noMeningitis
+    use output(30,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (5,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.has_Meningitis(False)
+        questions.baby_weight($weight)
+        check $weight > 2
+
+Meropenem_1to7_output_Meningitis
+    use output(40,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (5,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.has_Meningitis(True)
+        questions.baby_weight($weight)
+
+Meropenem_8to28_output_Meningitis
+    use output(40,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (5,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.has_Meningitis(True)
+        questions.baby_weight($weight)
+
+Vancomycin_1to7_output1_noMeningitis
+    use output(10,$weight,$con,18,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (6,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.has_Meningitis(False)
+        questions.uterine_age($age)
+        check $age <= 29
+        questions.baby_weight($weight)
+
+Vancomycin_1to7_output2_noMeningitis
+    use output(10,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (6,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.has_Meningitis(False)
+        questions.uterine_age($age)
+        check $age >= 30
+        check $age <= 36
+        questions.baby_weight($weight)
+
+Vancomycin_1to7_output3_noMeningitis
+    use output(12.5,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (6,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.has_Meningitis(False)
+        questions.uterine_age($age)
+        check $age >= 37
+        check $age <= 44
+        questions.baby_weight($weight)
+
+Vancomycin_8to28_output1_noMeningitis
+    use output(10,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (6,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.has_Meningitis(False)
+        questions.uterine_age($age)
+        check $age <= 29
+        questions.baby_weight($weight)
+
+Vancomycin_8to28_output2_noMeningitis
+    use output(10,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (6,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.has_Meningitis(False)
+        questions.uterine_age($age)
+        check $age >= 30
+        check $age <= 36
+        questions.baby_weight($weight)
+
+Vancomycin_8to28_output3_noMeningitis
+    use output(12.5,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (6,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.has_Meningitis(False)
+        questions.uterine_age($age)
+        check $age >= 37
+        check $age <= 44
+        questions.baby_weight($weight)
+
+Vancomycin_1to7_output_Meningitis
+    use output(20,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (6,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.has_Meningitis(True)
+        questions.baby_weight($weight)
+        check $weight >= 2
+
+Vancomycin_8to28_output_Meningitis
+    use output(30,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (6,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.has_Meningitis(True)
+        questions.baby_weight($weight)
+        check $weight >= 2
+
+Fluconazole_1to7_output_1_noThrush
+    use output(6,$weight,$con,48,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (7,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.has_Thrush(False)
+        questions.uterine_age($age)
+        check $age >= 1
+        check $age <= 29
+        questions.baby_weight($weight)
+
+Fluconazole_1to7_output_2_noThrush
+    use output(9,$weight,$con,48,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (7,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.has_Thrush(False)
+        questions.uterine_age($age)
+        check $age >= 30
+        questions.baby_weight($weight)
+
+Fluconazole_8to28_output_1_noThrush
+    use output(6,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (7,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.has_Thrush(False)
+        questions.uterine_age($age)
+        check $age >= 1
+        check $age <= 29
+        questions.baby_weight($weight)
+
+Fluconazole_8to28_output_2_noThrush
+    use output(9,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (7,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.has_Thrush(False)
+        questions.uterine_age($age)
+        check $age > 30
+        questions.baby_weight($weight)
+
+Fluconazole_1to7_output_1_Thrush
+    use output(3,$weight,$con,72,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (7,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.has_Thrush(True)
+        questions.uterine_age($age)
+        check $age >= 26
+        check $age <= 29
+        questions.baby_weight($weight)
+
+Fluconazole_1to7_output_2_Thrush
+    use output(3,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (7,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.has_Thrush(True)
+        questions.uterine_age($age)
+        check $age > 29
+        questions.baby_weight($weight)
+
+Fluconazole_8to28_output_1_Thrush
+    use output(3,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (7,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.has_Thrush(True)
+        questions.uterine_age($age)
+        check $age >= 26
+        check $age <= 29
+        questions.baby_weight($weight)
+
+Fluconazole_8to28_output_2_Thrush
+    use output(4.5,$weight,$con,24,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (7,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.has_Thrush(True)
+        questions.uterine_age($age)
+        check $age > 29
+        questions.baby_weight($weight)
+
+Acyclovir_output_1
+    use output(20,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (8,)
+        concentration_ready($con,$analysis,$type,$method)
+        questions.uterine_age($age)
+        check $age >= 1
+        check $age < 30
+        questions.baby_weight($weight)
+
+Acyclovir_output_2
+    use output(20,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (8,)
+        concentration_ready($con,$analysis,$type,$method)
+        questions.uterine_age($age)
+        check $age >= 30
+        questions.baby_weight($weight)
+
+Linezolid_1to7_output_1
+    use output(10,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (9,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.uterine_age($age)
+        check $age >= 1
+        check $age < 34
+        questions.baby_weight($weight)
+
+Linezolid_1to7_output_2
+    use output(10,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (9,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.uterine_age($age)
+        check $age >= 34
+        questions.baby_weight($weight)
+
+Linezolid_8to28_output
+    use output(10,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (9,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.uterine_age($age)
+        check $age >= 1
+        check $age <= 34
+        questions.baby_weight($weight)
+
+Clindamycin_1to7_output_1
+    use output(5,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (10,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.baby_weight($weight)
+        check $weight > 0
+        check $weight <= 2
+
+Clindamycin_1to7_output_2
+    use output(7,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (10,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.baby_weight($weight)
+        check $weight > 2
+
+Clindamycin_8to28_output_1
+    use output(10,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (10,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.baby_weight($weight)
+        check $weight > 0
+        check $weight <= 2
+
+Clindamycin_8to28_output_2
+    use output(9,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (10,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.baby_weight($weight)
+        check $weight > 2
+        questions.dose_allowed_according_to_postnatal_age($days)
+        check $days < 29
+
+Clindamycin_8to28_output_3
+    use output(10,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (10,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.baby_weight($weight)
+        check $weight > 2
+        questions.dose_allowed_according_to_postnatal_age($days)
+        check $days >= 29
+
+ColistimethateSodium_1to7_output
+    use output(2.5,$weight,$con,day,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (11,)
+        concentration_ready($con,$analysis,$type,$method)
+        questions.baby_weight($weight)
+
+Piperacillin_1to7_output
+    use output(100,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (12,)
+        concentration_ready($con,$analysis,$type,$method)
+        between1to7(True)
+        questions.baby_weight($weight)
+
+Piperacillin_8to28_output
+    use output(100,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (12,)
+        concentration_ready($con,$analysis,$type,$method)
+        between8to28(True)
+        questions.baby_weight($weight)
+
+Ampicillin_output_1
+    use output(50,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (13,)
+        concentration_ready($con,$analysis,$type,$method)
+        questions.baby_weight($weight)
+        questions.uterine_age_according_to_Preterm_or_Term($uage)
+        check $uage in (1, )
+
+Ampicillin_output_2
+    use output(50,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (13,)
+        concentration_ready($con,$analysis,$type,$method)
+        questions.baby_weight($weight)
+        questions.uterine_age_according_to_Preterm_or_Term($uage)
+        check $uage in (2, )
+
+Metronidazole_output_1
+    use output(7.5,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (14,)
+        concentration_ready($con,$analysis,$type,$method)
+        questions.uterine_age($age)
+        check $age >= 24
+        check $age < 34
+        questions.baby_weight($weight)
+
+Metronidazole_output_2
+    use output(7.5,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (14,)
+        concentration_ready($con,$analysis,$type,$method)
+        questions.uterine_age($age)
+        check $age >= 34
+        check $age <= 40
+        questions.baby_weight($weight)
+
+Metronidazole_output_3
+    use output(10,$weight,$con,8,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (14,)
+        concentration_ready($con,$analysis,$type,$method)
+        questions.uterine_age($age)
+        check $age > 40
+        questions.baby_weight($weight)
+
+Ciprofloxacin_output
+    use output(5,$weight,$con,12,$analysis,$type,$method)
+    when
+        questions.medicament_name($ans)
+        check $ans in (15,)
+        concentration_ready($con,$analysis,$type,$method)
+        questions.baby_weight($weight)
